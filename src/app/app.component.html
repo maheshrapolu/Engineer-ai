@@ -1,0 +1,38 @@
+<br>
+<div>
+  <label>Search</label>
+  <input type="text"  [(ngModel)] = "searchText">
+</div>
+<table class="table" border="1px">
+  <tr>
+      <th>Id</th>
+      <th>title</th>
+      <th>url</th>
+      <td>Author</td>
+      
+  </tr>
+  <tr *ngFor="let d of fdata | pipe : searchText" (click)="click(d)"   [ngClass] = "{'highlight' : d.title == selectedName}"  data-toggle="modal" data-target="#myModal">
+      <td>{{d.created_at | date:' M/d/yy, h:mm a,EEEE'}}</td>
+      <td>{{d.title}}</td>
+      <td>{{d.url}}</td>
+      <td>{{d.author}}</td>
+      </tr>
+<table>
+
+        <div class="modal" id="myModal">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Table data</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                    
+                     <pre>{{dis|json}}</pre>
+                    
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+              </div>
+                </div>
